@@ -62,30 +62,30 @@ def parse(inputFile, outputFile, colorMapFile):
 #  PARSING
 ################################
 
-	print "START PARSING", inputFile, " to ", outputFile
+	print ("START PARSING", inputFile, " to ", outputFile)
 	
-	print "\nPARSING DATA CARDS"
+	print ("\nPARSING DATA CARDS")
 	parser.parseDataCards()
-	print "\t" + str(len(parser.dataCards)) + " DATA CARDS PARSED"
+	print ("\t" + str(len(parser.dataCards)) + " DATA CARDS PARSED")
 	
-	print "\nPARSING SURFACE CARDS"
+	print ("\nPARSING SURFACE CARDS")
 	parser.parseSurfaces()
-	print "\t" + str(len(parser.surfaceCards)) + " SURFACE CARDS PARSED"
+	print ("\t" + str(len(parser.surfaceCards)) + " SURFACE CARDS PARSED")
 
-	print "\nPARSING CELL CARDS"
+	print ("\nPARSING CELL CARDS"
 	parser.parseCells()
-	print "\t" + str(len(parser.cellCards)) + " SURFACE CARDS PARSED"
+	print ("\t" + str(len(parser.cellCards)) + " SURFACE CARDS PARSED")
 	
-	print "\t"  + str(len(parser.universes)) + " Universes Found:",
+	print ("\t"  + str(len(parser.universes)) + " Universes Found:"),
 	for uni in parser.universes:
-		print str(uni) + "",
-	print ""
+		print (str(uni) + ""),
+	print ("")
 
 ################################
 #  BUILDING
 ################################
 
-	print "\nBUILDING CELL CARDS"
+	print ("\nBUILDING CELL CARDS")
 	
 	# write a standard macro for drawing universes in Pov-Ray which can be used for every sort of universe
 	file.writeln("//Macro's for drawing")
@@ -177,11 +177,11 @@ def parse(inputFile, outputFile, colorMapFile):
 		surfaceCard = parser.surfaceCards[card]
 		file.writeln("//" + surfaceCard.getSurfaceLine())
 
-	print "\t" + str(len(parser.cellCards)) + " CELL CARDS BUILDED"
-	print "\nEND BUILDING CELL CARDS"
+	print ("\t" + str(len(parser.cellCards)) + " CELL CARDS BUILDED")
+	print ("\nEND BUILDING CELL CARDS")
 
-	print "\nMCNPX to POV RAY COMPLETED"
-	print "TITLE MCNPX: " + parser.title
+	print ("\nMCNPX to POV RAY COMPLETED")
+	print ("TITLE MCNPX: " + parser.title)
 
 	#oStrippedFile = open(inputFile + "stripped.txt", 'w')
 	#for line in parser.cellBlock:
@@ -223,14 +223,14 @@ def initialize():
 	try:
 		opts, args = getopt.getopt(sys.argv[1:], "h", ["help"])
 	except getopt.error, msg:
-		print msg
-		print "for help use --help"
+		print (msg)
+		print ("for help use --help")
 		sys.exit(2)
 	
 
 	
 	if len(args) != 3:
-		print "ERROR (MCNPXtoPOV.py): not enough arguments"
+		print ("ERROR (MCNPXtoPOV.py): not enough arguments")
 		return 1
 	
 	parse(args[0], args[1], args[2])

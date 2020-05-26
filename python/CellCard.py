@@ -72,7 +72,7 @@ class CellCard:
 	#------------------------------------------------------------------------------------------------------------------
 	def printGeometry(self):
 		for geo in self.geometry:
-			print geo,
+			print (geo),
 
 	# ==> getPovRayArgs()
 	# Returns the arguments of the cellcard in a dictionary that can be used by pov ray
@@ -162,7 +162,7 @@ class CellCard:
 					raise(Exception("ERROR (Parse Cell " + str(self.number) + "): Cell " + str(self.number) + " contains a LAT with unknown type " + str(self.typeLAT)))
 			else:
 				raise(Exception("ERROR (Parse Cell " + str(self.number) + "): Cell " + str(self.number) + " contains LAT, but no FILL"))
-				print 
+				print ("")
 				return 0
 		elif (params.has_key('FILL') or params.has_key('*FILL')):
 			if (not self.hasLAT):

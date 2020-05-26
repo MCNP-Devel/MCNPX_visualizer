@@ -212,7 +212,7 @@ class MCNPXParser:
                         pos = cellCard[2].find('-', 1)
                         if (pos is not -1):
                             cellCard[2] = cellCard[2][0:pos] + 'E' + cellCard[2][pos:]
-                            print "WARNING: Bad density input for cell " + str(card.number) + " solved to " + cellCard[2]
+                            print ("WARNING: Bad density input for cell " + str(card.number) + " solved to " + cellCard[2])
                             
                     geometryStartPosition = 3
                 else:
@@ -260,7 +260,7 @@ class MCNPXParser:
     
         cellNumber = int(cellNumber)
         if (not self.cellCards.has_key(int(cellNumber))):
-            print "Error buildCellCard -> cell " + str(cellNumber) + " not known"
+            print ("Error buildCellCard -> cell " + str(cellNumber) + " not known")
             raise(Exception("ERROR (Parse Geometry Cell " + str(cellNumber) + "): Cell " + str(cellNumber) + " not known"))
             
             return
@@ -472,7 +472,7 @@ class MCNPXParser:
         totalPovRayBuild = self.buildSubGeometry(card.fullGeometry, card, card.getPovRayArgs(), useColor, scale)# )
 
         if card.number == 201:
-            print card
+            print (card)
             
         if (self.complementCard != None):
             return totalPovRayBuild
@@ -598,8 +598,8 @@ class MCNPXParser:
                 minJ = latticeCard.minJ
                 maxJ = latticeCard.maxJ
                 
-            print "minJ: " + str(minJ)
-            print "maxJ: " + str(maxJ)
+            print ("minJ: " + str(minJ))
+            print ("maxJ: " + str(maxJ))
             
             if (latticeCard.minI == 0 and latticeCard.maxI == 0):
                 if (not hasBB or not bbParent):
@@ -617,8 +617,8 @@ class MCNPXParser:
                 minI = latticeCard.minI
                 maxI = latticeCard.maxI
                 
-            print "minI: " + str(minI)
-            print "maxI: " + str(maxI)
+            print ("minI: " + str(minI))
+            print ("maxI: " + str(maxI))
                 
             
             # START LOOP        
@@ -703,7 +703,7 @@ class MCNPXParser:
                                 universe = self.buildUniverse(latticeCard.latUniverses[universeCounter], latticeCard.number, depth,{} , buildVoid, bb.buildPOVRay())
                                 if (universe):
                                     if (universe.kwargs.has_key('translate')):
-                                            print "ERROR: Two translations at the same time"
+                                            print ("ERROR: Two translations at the same time")
                                     for a in args.keys():
                                         universe.kwargs[a] = args[a]    
                                     it = universe
@@ -743,7 +743,7 @@ class MCNPXParser:
             offsetZ_extra = 0
             
             if (not bbParent):
-                print parentCard
+                print (parentCard)
                 offset = self.getRectangularOffset(parentCard)
                 noInf = True
                 for i in range(0,len(offset)):
@@ -770,8 +770,8 @@ class MCNPXParser:
                 minK = latticeCard.minK
                 maxK = latticeCard.maxK
                 
-            print "minK: " + str(minK)
-            print "maxK: " + str(maxK)
+            print ("minK: " + str(minK))
+            print ("maxK: " + str(maxK))
                 
             if (latticeCard.minJ == 0 and latticeCard.maxJ == 0):
                 if (not hexOffset or not bbParent):
@@ -789,8 +789,8 @@ class MCNPXParser:
                 minJ = latticeCard.minJ
                 maxJ = latticeCard.maxJ
                 
-            print "minJ: " + str(minJ)
-            print "maxJ: " + str(maxJ)
+            print ("minJ: " + str(minJ))
+            print ("maxJ: " + str(maxJ))
             
             if (latticeCard.minI == 0 and latticeCard.maxI == 0):
                 if (not hexOffset or not bbParent):
@@ -808,8 +808,8 @@ class MCNPXParser:
                 minI = latticeCard.minI
                 maxI = latticeCard.maxI
                 
-            print "minI: " + str(minI)
-            print "maxI: " + str(maxI)
+            print ("minI: " + str(minI))
+            print ("maxI: " + str(maxI))
             
             universeCounter = 0  # counter for the current universe position in the lattice (increments for every build lattice item
             for k in range(minK, maxK+1):
@@ -934,7 +934,7 @@ class MCNPXParser:
             #   elements.append(clippedBy)
             return povray.Union(*lattice)#, **parentCard.getPovRayArgs())#, **args)
         else:
-            print "ERROR (buildLattice) => lattice only consists of 1 povray element"
+            print ("ERROR (buildLattice) => lattice only consists of 1 povray element")
             lattice = lattice[0]
             return lattice
         
@@ -973,7 +973,7 @@ class MCNPXParser:
                             return 0 # unable to find bounding box for complements
                         else:
                             surface = surface
-                        print geometry
+                        print (geometry)
                         bb =  self.surfaceCards[int(surface)].getBoundingBox()
                         if (bb):
                             totalBoundingBox.append(bb)
@@ -1253,8 +1253,8 @@ class MCNPXParser:
             bbExists = False
         
         if (bbExists):  
-            print "jaja"
-            print card
+            print ("jaja")
+            print (card)
             box = self.getBoundingBoxOfGeometry(surface)
             # copy the bounding box in bb
             if (box):
@@ -1490,10 +1490,10 @@ class MCNPXParser:
             inverseWrite = ''
             
         if (self.complementCard != None):
-            print str(material) + " to " + str(self.complementCard.material)
+            print (str(material) + " to " + str(self.complementCard.material))
             material = self.complementCard.material
             
-            print "material complement"
+            print ("material complement")
 
         # if the surface can be build with colors and the material is defined, request it from the colorMap
         # if transparency if entirely 0 => does not render the surface
@@ -1531,7 +1531,7 @@ class MCNPXParser:
         # PX - PLANE with normal to x-axis and D (3000 PX D)
         elif (surfaceCard.mnemonic == 'PX' or surfaceCard.mnemonic == 'px'):
             if (len(surfaceCard.data) != 1):
-                print str(len(surfaceCard.data))
+                print (str(len(surfaceCard.data)))
                 raise(Exception("ERROR (Build Surface Card " + str(surfaceNumber) + "): Surface " + str(surfaceNumber) + " of type PX has not enough or too much arguments (" + str(len(surfaceCard.data)) + " instead of 1)"))
                 return
             povrayObject = povray.Plane(povray.Vector(1.0, 0.0, 0.0), surfaceCard.data[0]
@@ -1921,7 +1921,7 @@ class MCNPXParser:
                     h_c = 2
                     args['rotate'] = povray.Vector(90.0, 0.0, 0.0)
                 else:
-                    print "ERROR (Parsing RHP): RHP not parallel to an axis"
+                    print ("ERROR (Parsing RHP): RHP not parallel to an axis")
                     return
                 
                 outputCoordinates = []
@@ -1947,12 +1947,12 @@ class MCNPXParser:
                 side1v = container.Container.cross(side1, h)
                 side2v = container.Container.cross(side2, h)
                 side3v = container.Container.cross(side3, h)
-                print "WARNING: Hexagon is not regular and is not been drawn"
+                print ("WARNING: Hexagon is not regular and is not been drawn")
             else:
                 raise(Exception("ERROR (Build Surface Card " + str(surfaceNumber) + "): Surface " + str(surfaceNumber) + " of type RHP has not enough or too much arguments (" + str(len(surfaceCard.data)) + " instead of 15)"))
                 return
         if (povrayObject == 0):
-            print "WARNING (Build Surface Card " + str(surfaceNumber) + ": Type of surface \'" + str(surfaceCard.mnemonic) + "\' of surface card " + str(surfaceNumber) + " not defined"
+            print ("WARNING (Build Surface Card " + str(surfaceNumber) + ": Type of surface \'" + str(surfaceCard.mnemonic) + "\' of surface card " + str(surfaceNumber) + " not defined")
             return 0
         transArgs = surfaceCard.getTransformationArgs()
         if (transArgs.has_key('translate')):
@@ -2058,7 +2058,7 @@ class MCNPXParser:
     # Returns the offset of a rectangular shape specified in a cellcard geometry (offset = [minX, minY, minZ, maxX, maxY, maxZ])
     #------------------------------------------------------------------------------------------------------------------ 
     def getRectangularOffset(self, cellCard):
-        print "simontest" + str(cellCard)
+        print ("simontest" + str(cellCard))
         geometry = cellCard.fullGeometry
         if (re.search('\:', geometry)):
             return 0
@@ -2079,8 +2079,8 @@ class MCNPXParser:
                 else:
                     surface = surface
                 boundary = self.surfaceCards[int(surface)].getRectangularOffset(isMin)
-                print "boundary"
-                print boundary
+                print ("boundary")
+                print (boundary)
                 for i in range(0,3):
                     if (offset[i] == 'inf'):
                         offset[i] = boundary[i]
@@ -2112,10 +2112,10 @@ class MCNPXParser:
                 if (dh.set(re.match('[\w,\s]*n[\w,\s]*=[\s]*0', self.cellCards[card].params["IMP"] ,flags=re.IGNORECASE))):
                     found.append(self.cellCards[card])
         if (len(found) > 1):
-            print "WARNING: Too much cellcards with imp:n=0"
+            print ("WARNING: Too much cellcards with imp:n=0")
             return found
         elif (len(found) == 0):
-            print "WARNING: Celcard with imp:n=0 not found"
+            print ("WARNING: Celcard with imp:n=0 not found")
             return 0
         else:
             return found
@@ -2145,8 +2145,8 @@ class MCNPXParser:
             else:   
                 union = re.split('[:]+', geometry)
             offset = ['inf', 'inf', 'inf', 'inf', 'inf', 'inf']
-            print union
-            print "jaja1"
+            print (union)
+            print ("jaja1")
             for surface in union:
                 surface = surface.replace(" ", "");
                 if (isComplement):

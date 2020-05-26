@@ -227,13 +227,13 @@ class SurfaceCard:
 					return 0
 				return bb
 			else:
-				print "WARNING: Get bounding box for surface " + str(self.number) + " of type " + str(self.mnemonic) + " failed."
+				print ("WARNING: Get bounding box for surface " + str(self.number) + " of type " + str(self.mnemonic) + " failed.")
 				return 0
 			
 		# BOX (Box)	# http://www.povray.org/documentation/view/3.6.1/276/
 		if (self.mnemonic == 'BOX' or self.mnemonic == 'box'):
 			if (len(self.data) != 12):
-				print "WARNING: Get bounding box for surface " + str(self.number) + " of type " + str(self.mnemonic) + " failed."
+				print ("WARNING: Get bounding box for surface " + str(self.number) + " of type " + str(self.mnemonic) + " failed.")
 				return 0
 			targetX = self.data[0] + self.data[3] + self.data[6] + self.data[9];
 			targetY = self.data[1] + self.data[4] + self.data[7] + self.data[10];
@@ -246,7 +246,7 @@ class SurfaceCard:
 		elif (self.mnemonic == 'RPP' or self.mnemonic == 'rpp'):
 			#print "RPP"
 			if (len(self.data) != 6):
-				print "WARNING: Get bounding box for surface " + str(self.number) + " of type " + str(self.mnemonic) + " failed."
+				print ("WARNING: Get bounding box for surface " + str(self.number) + " of type " + str(self.mnemonic) + " failed.")
 				return 0
 				
 			bb = BoundingBox.BoundingBox(self.data[0], self.data[2], self.data[4], self.data[1], self.data[3], self.data[5])
@@ -255,7 +255,7 @@ class SurfaceCard:
 		# SPH (sphere)	# http://www.povray.org/documentation/view/3.6.1/283/
 		elif (self.mnemonic == 'SPH' or self.mnemonic == 'sph'):
 			if (len(self.data) != 4):
-				print "WARNING: Get bounding box for surface " + str(self.number) + " of type " + str(self.mnemonic) + " failed."
+				print ("WARNING: Get bounding box for surface " + str(self.number) + " of type " + str(self.mnemonic) + " failed.")
 				return 0
 			r = self.data[3]
 			bb = BoundingBox.BoundingBox(self.data[0]-r,self.data[1]-r,self.data[2]-r,self.data[0]+r,self.data[1]+r,self.data[2]+r)
@@ -265,7 +265,7 @@ class SurfaceCard:
 		# RCC (Right Circular Cylinder)	# http://www.povray.org/documentation/view/3.6.1/278/
 		elif (self.mnemonic == 'RCC' or self.mnemonic == 'rcc'): 
 			if (len(self.data) != 7):
-				print "WARNING: Get bounding box for surface " + str(self.number) + " of type " + str(self.mnemonic) + " failed."
+				print ("WARNING: Get bounding box for surface " + str(self.number) + " of type " + str(self.mnemonic) + " failed.")
 				return 0
 			
 			
@@ -288,7 +288,7 @@ class SurfaceCard:
 		# SO -  centered at Origin and radius R  (3000 SO R)
 		if (self.mnemonic == 'SO' or self.mnemonic == 'so' or self.mnemonic == 's0'):
 			if (len(self.data) != 1):
-				print "WARNING: Get bounding box for surface " + str(self.number) + " of type " + str(self.mnemonic) + " failed."
+				print ("WARNING: Get bounding box for surface " + str(self.number) + " of type " + str(self.mnemonic) + " failed.")
 				return 0
 			r = self.data[0]
 			bb = BoundingBox.BoundingBox(0.0-r, 0.0-r, 0.0-r, 0.0+r, 0.0+r, 0.0+r)
@@ -297,7 +297,7 @@ class SurfaceCard:
 		# S -  General  (3000 SO X Y Z R)
 		if (self.mnemonic == 'S' or self.mnemonic == 's'):
 			if (len(self.data) != 4):
-				print "WARNING: Get bounding box for surface " + str(self.number) + " of type " + str(self.mnemonic) + " failed."
+				print ("WARNING: Get bounding box for surface " + str(self.number) + " of type " + str(self.mnemonic) + " failed.")
 				return 0
 			r = self.data[3]
 			bb = BoundingBox.BoundingBox(self.data[0]-r, self.data[1]-r, self.data[2]-r, self.data[0]+r, self.data[1]+r, self.data[2]+r)
@@ -306,7 +306,7 @@ class SurfaceCard:
 		# SX -  Centered on x-axis  (3000 SX X R)
 		if (self.mnemonic == 'SX' or self.mnemonic == 'sx'):
 			if (len(self.data) != 2):
-				print "WARNING: Get bounding box for surface " + str(self.number) + " of type " + str(self.mnemonic) + " failed."
+				print ("WARNING: Get bounding box for surface " + str(self.number) + " of type " + str(self.mnemonic) + " failed.")
 				return 0
 			r = self.data[1]
 			bb = BoundingBox.BoundingBox(self.data[0]-r, 0.0-r, 0.0-r, self.data[0]+r, 0.0+r, 0.0+r)
@@ -315,7 +315,7 @@ class SurfaceCard:
 		# SY -  Centered on y-axis  (3000 SY Y R)
 		if (self.mnemonic == 'SY' or self.mnemonic == 'sy'):
 			if (len(self.data) != 2):
-				print "WARNING: Get bounding box for surface " + str(self.number) + " of type " + str(self.mnemonic) + " failed."
+				print ("WARNING: Get bounding box for surface " + str(self.number) + " of type " + str(self.mnemonic) + " failed.")
 				return 0
 			r = self.data[1]
 			bb = BoundingBox.BoundingBox(0.0-r, self.data[0]-r, 0.0-r, 0.0+r, self.data[0]+r, 0.0+r)
@@ -324,7 +324,7 @@ class SurfaceCard:
 		# SZ -  Centered on z-axis  (3000 SZ Z R)
 		if (self.mnemonic == 'SZ' or self.mnemonic == 'sz'):
 			if (len(self.data) != 2):
-				print "WARNING: Get bounding box for surface " + str(self.number) + " of type " + str(self.mnemonic) + " failed."
+				print ("WARNING: Get bounding box for surface " + str(self.number) + " of type " + str(self.mnemonic) + " failed.")
 				return 0
 			r = self.data[1]
 			bb = BoundingBox.BoundingBox(0.0-r, 0.0-r, self.data[0]-r, 0.0+r, 0.0+r, self.data[0]+r)
@@ -348,7 +348,7 @@ class SurfaceCard:
 					bb.minZ =  - (offset['a'] - offset['a']/3.0)
 					bb.maxZ =  (offset['a'] - offset['a']/3.0)
 				else:
-					print "Error (SurfaceCard::getBoudingBox) => ERROR in BB RHP"
+					print ("Error (SurfaceCard::getBoudingBox) => ERROR in BB RHP")
 				if (offset['x'] == 'b'):
 					bb.minX =  - offset['b']/2.0
 					bb.maxX =  offset['b']/2.0
@@ -359,7 +359,7 @@ class SurfaceCard:
 					bb.minZ =  - offset['b']/2.0
 					bb.maxZ =  offset['b']/2.0
 				else:
-					print "Error (SurfaceCard::getBoudingBox) => ERROR in BB RHP"
+					print ("Error (SurfaceCard::getBoudingBox) => ERROR in BB RHP")
 				if (offset['x'] == 'h'):
 					bb.minX =  base[0]
 					bb.maxX =  base[0] + offset['h']
@@ -370,11 +370,11 @@ class SurfaceCard:
 					bb.minZ =  base[2]
 					bb.maxZ =  base[2] + offset['h']
 				else:
-					print "Error (SurfaceCard::getBoudingBox) => ERROR in BB RHP"
+					print ("Error (SurfaceCard::getBoudingBox) => ERROR in BB RHP")
 					
 				return bb
 			else:
-				print "WARNING: Get bounding box for surface " + str(self.number) + " of type " + str(self.mnemonic) + " failed."
+				print ("WARNING: Get bounding box for surface " + str(self.number) + " of type " + str(self.mnemonic) + " failed.")
 				return 0
 		
 		
@@ -445,10 +445,10 @@ class SurfaceCard:
 	#------------------------------------------------------------------------------------------------------------------
 	def getRectangularOffset(self, isMin):
 
-		print self
+		print (self)
 		if (self.mnemonic == 'PX' or self.mnemonic == 'px'):
 			if (len(self.data) != 1):
-				print str(len(self.data))
+				print (str(len(self.data)))
 				raise(Exception("ERROR (Build Surface Card " + str(self.number) + "): Surface " + str(self.number) + " of type PX has not enough or too much arguments (" + str(len(self.data)) + " instead of 1)"))
 				return
 			if (isMin):
@@ -481,7 +481,7 @@ class SurfaceCard:
 			return [self.data[0], self.data[2], self.data[4], self.data[1], self.data[3], self.data[5]]
 		
 		if (self.mnemonic == 'BOX' or self.mnemonic == 'box'):
-			print self.data
+			print (self.data)
 			if (len(self.data) != 12):
 				raise(Exception("ERROR (Build Surface Card " + str(self.number) + "): Surface " + str(self.number) + " of type BOX has not enough or too much arguments (" + str(len(self.data)) + " instead of 12)"))
 				return 0
